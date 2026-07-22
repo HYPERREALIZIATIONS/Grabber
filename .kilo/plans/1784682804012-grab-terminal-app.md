@@ -8,7 +8,7 @@ Build a polished terminal app (`grab`) that downloads videos from YouTube, X/Twi
 |---|---|---|
 | TUI framework | `blessed` | Mature, built-in mouse + keyboard widget set, centered layout, themes. |
 | Download engine | `ytdlp-nodejs` | Auto-downloads the standalone yt-dlp binary and ffmpeg; exposes JSON format info and progress events. |
-| CLI parsing | `commander` | Standard, minimal boilerplate for `yoinks [url]` and `--theme`. |
+| CLI parsing | `commander` | Standard, minimal boilerplate for `grab [url]` and `--theme`. |
 | Runtime | Node.js ≥ 18 | Required by the environment. |
 
 ## Architecture
@@ -21,7 +21,7 @@ src/
 │   ├── picker.js     # Full-screen format picker list
 │   └── progress.js   # Download progress overlay
 ├── engine/
-│   ├── binaries.js   # Ensure yt-dlp + ffmpeg exist, cache to ~/.cache/yoinks/
+│   ├── binaries.js   # Ensure yt-dlp + ffmpeg exist, cache to ~/.cache/grab/
 │   ├── formats.js    # Fetch formats, parse into human-friendly options
 │   └── download.js   # Execute download with progress events
 └── theme.js          # Theme definitions, auto-detect logic
@@ -29,12 +29,12 @@ src/
 
 ## User Flow
 1. **Launch**
-   - `yoinks [url]` or `yoinks`
+   - `grab [url]` or `grab`
    - If URL is passed, skip the welcome screen and fetch formats immediately.
    - If no URL, show a centered welcome screen with instructions and a textbox to paste a link.
 
 2. **Welcome Screen**
-   - Title: `yoinks`
+   - Title: `grab`
    - Subtitle: paste a video link anywhere
    - `textbox` widget: accepts typed input and pasted text (Ctrl+V / Cmd+V / right-click paste).
    - Keys: `Enter` to submit, `Ctrl+C` / `q` to quit.
@@ -69,7 +69,7 @@ src/
 
 ## Binary Management
 1. On first run, instantiate `YtDlp` with no `binaryPath`.
-2. Call `helpers.downloadYtDlp()` (or `new YtDlp().downloadYtDlp()`) to cache the standalone binary to `~/.cache/yoinks/yt-dlp`.
+2. Call `helpers.downloadYtDlp()` (or `new YtDlp().downloadYtDlp()`) to cache the standalone binary to `~/.cache/grab/yt-dlp`.
 3. Before downloading, check `checkInstallationAsync({ ffmpeg: true })`; if missing, call `downloadFFmpeg()` and cache alongside.
 4. Reuse the cached binaries on subsequent runs.
 
@@ -88,7 +88,7 @@ Three themes: `light`, `dark`, `auto`.
 - If OSC 11 is unsupported or times out (1s), fall back to dark.
 
 **Environment overrides**
-- `YONKS_THEME=auto|light|dark` (default: auto).
+- `GRAB_THEME=auto|light|dark` (default: auto).
 
 **Application**
 - `screen` option sets base `style.fg` / `style.bg`.
@@ -108,9 +108,9 @@ Three themes: `light`, `dark`, `auto`.
 
 ## Packaging
 - `package.json` includes:
-  - `name: yoinks`
+  - `name: grab`
   - `version: 1.0.0`
-  - `bin: { yoinks: "./src/cli.js" }`
+  - `bin: { grab: "./src/cli.js" }`
   - `dependencies: blessed, ytdlp-nodejs, commander`
   - `engines: { node: ">=18" }`
 
