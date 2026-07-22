@@ -1,7 +1,7 @@
-# yoinks — Terminal Video Downloader
+# grab — Terminal Video Downloader
 
 ## Goal
-Build a polished terminal app (`yoinks`) that downloads videos from YouTube, X/Twitter, Instagram, Threads, TikTok, and similar sites. It must support interactive URL pasting, a full-screen quality picker with keyboard + mouse navigation, automatic theme support, and transparent yt-dlp/ffmpeg installation.
+Build a polished terminal app (`grab`) that downloads videos from YouTube, X/Twitter, Instagram, Threads, TikTok, and similar sites. It must support interactive URL pasting, a full-screen quality picker with keyboard + mouse navigation, automatic theme support, and transparent yt-dlp/ffmpeg installation.
 
 ## Tech Stack
 | Purpose | Package / Tool | Rationale |
