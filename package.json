@@ -1,0 +1,33 @@
+{
+  "name": "grab",
+  "version": "1.0.0",
+  "description": "Polished terminal video downloader for YouTube, X, Instagram, TikTok, and more",
+  "main": "src/cli.js",
+  "bin": {
+    "grab": "./src/cli.js"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": [
+    "video",
+    "downloader",
+    "cli",
+    "tui",
+    "youtube",
+    "tiktok",
+    "instagram"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "commander": "^12.1.0",
+    "ytdlp-nodejs": "^3.4.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
